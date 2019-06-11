@@ -2,7 +2,7 @@
 
 Displays your Progress in the game JumpKing as a Graph which can be added to your Stream.
 
-![Example](https://i.imgur.com/eq4yWCd.png)
+![Example](https://i.imgur.com/I0yGN69.png)
 
 ## TODO
 
