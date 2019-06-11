@@ -6,7 +6,7 @@ namespace JumpKing_Graph {
 
     class JumpKingSDK {
         private Process Process = null;
-        private IntPtr CamScreenPtr;
+        private IntPtr CamScreenPtr = IntPtr.Zero;
 
         public bool FoundOffsets() {
             return this.CamScreenPtr != IntPtr.Zero;
@@ -19,14 +19,24 @@ namespace JumpKing_Graph {
         }
 
         public void Init() {
-            Process[] JumpKingProc = Process.GetProcessesByName("JumpKing");
+            if(!this.HasProcess()) {
+                 Process[] JumpKingProc = Process.GetProcessesByName("JumpKing");
 
-            if(JumpKingProc.Length != 1)
-                throw new Exception("JumpKing is not running right now");
+                if(JumpKingProc.Length != 1)
+                    throw new Exception("JumpKing is not running right now");
 
-            this.Process = JumpKingProc[0];
+                this.Process = JumpKingProc[0];
 
-            this.CamScreenPtr = MemHax.SigScan(this.Process, null, new byte[] { 0x5E, 0x5F, 0x5D, 0xC2, 0x00, 0x00, 0x89, 0x3D, 0x00, 0x00, 0x00, 0x00, 0x8B, 0x15 }, 8);
+                this.Process.Exited += JumpKingProcExit;
+            }
+
+            if(this.HasProcess() && !this.FoundOffsets())
+                this.CamScreenPtr = MemHax.SigScan(this.Process, null, new byte[] { 0x5E, 0x5F, 0x5D, 0xC2, 0x00, 0x00, 0x89, 0x3D, 0x00, 0x00, 0x00, 0x00, 0x8B, 0x15 }, 8);
+        }
+
+        private void JumpKingProcExit(object sender, System.EventArgs e) {
+            this.Process = null;
+            this.CamScreenPtr = IntPtr.Zero;
         }
 
         public ushort GetCurrentScreen() {
