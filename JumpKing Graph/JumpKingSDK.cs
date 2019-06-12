@@ -15,7 +15,7 @@ namespace JumpKing_Graph {
             return this.Process != null && !this.Process.HasExited;
         }
         public bool IsReady() {
-            return this.FoundOffsets() && !this.HasProcess();
+            return this.FoundOffsets() && this.HasProcess();
         }
 
         public void Init() {
