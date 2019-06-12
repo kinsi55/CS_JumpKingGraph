@@ -4,6 +4,10 @@ Displays your Progress in the game JumpKing as a Graph which can be added to you
 
 ![Example](https://i.imgur.com/I0yGN69.png)
 
+## Download
+
+https://github.com/kinsi55/CS_JumpKingGraph/releases
+
 ## TODO
 
 Need to find a deref chain for two things:
