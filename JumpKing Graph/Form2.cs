@@ -66,6 +66,14 @@ namespace JumpKing_Graph {
 #else
             currStage = sdk.GetCurrentScreen();
 #endif
+            //When heading into the NewBabe+ area, your "current screen" number increases 1 beyond the end screen of the normal level, 
+            //but technically you've only advanced one screen... so lets hackyfix that
+            if(currStage >= 45)
+                currStage -= 27;
+
+            //Same issue for Ghost of the babe
+            if(currStage >= 155)
+                currStage -= 153;
 
             if(PB < currStage)
                 PB = currStage;
