@@ -2,11 +2,11 @@
 
 Displays your Progress in the game JumpKing as a Graph which can be added to your Stream.
 
-![Example](https://i.imgur.com/I0yGN69.png)
-
 ## Download
 
 https://github.com/kinsi55/CS_JumpKingGraph/releases
+
+![Example](https://i.imgur.com/I0yGN69.png)
 
 ## TODO
 
